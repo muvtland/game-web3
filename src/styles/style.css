@@ -57,6 +57,7 @@ body,
   justify-content: start;
   align-items: center;
   background: var(--blue);
+  /*background: white;*/
 }
 
 .logo-ball {
@@ -293,10 +294,12 @@ body,
 }
 
 .bottom-label {
-  font-size: clamp(1.5em, 1.75vw, 5em);
+  /*font-size: clamp(1.5em, 1.75vw, 5em);*/
+  font-size: 50px;
   letter-spacing: 3px;
   /* height: 3vw; */
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .time {
@@ -370,6 +373,24 @@ body,
   background: #0000003e;
   padding-top: 10px;
   pointer-events: auto;
+}
+
+.restart-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.restart-button-block{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.restart-button-block:nth-child(1){
+  margin-right: 40px;
 }
 
 .restart-button {

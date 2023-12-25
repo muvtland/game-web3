@@ -59,9 +59,10 @@ export function RandomLevel({
       const type = types[Math.floor(Math.random() * types.length)];
       blocks.push(type);
     }
-
     return blocks;
   }, [count, types, seed]);
+
+
 
   return (
     <>
@@ -74,8 +75,10 @@ export function RandomLevel({
           difficulty={difficulty}
         />
       ))}
-      <BlockEmpty position={[0, 0, -(count + 1) * 4]} />
-      <BlockEnd position={[0, 0, -(count + 2) * 4]} />
+      {/*<BlockEmpty position={[0, 0, -(count + 1) * 4]}  key={blocks.length}/>*/}
+      <BlockEmpty position={[0, 0, -(count + 1) * 4]}  key={blocks.length}/>
+      {/*<BlockEnd position={[0, 0, -(count + 2) * 4]} key={blocks.length} />*/}
+      <BlockEnd position={[0, 0, -(count + 2) * 4]} key={blocks.length} />
       <Bounds length={count + 3} />
     </>
   );

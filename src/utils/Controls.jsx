@@ -14,7 +14,7 @@ const controls = [
 ];
 
 function Controls({ children }) {
-  return <KeyboardControls map={controls}>{children}</KeyboardControls>;
+  return <KeyboardControls map={controls} >{children}</KeyboardControls>;
 }
 
 export default Controls;

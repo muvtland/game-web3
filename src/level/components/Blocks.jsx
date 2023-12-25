@@ -509,12 +509,15 @@ export function BlockEnd({ position = [0, 0, 0] }) {
           type="fixed"
           colliders="trimesh"
           position={[0, 1.05, 0]}
+          // position={[0, 1.05, 0]}
           rotation={[0, Math.PI / 2, 0]}
+          // rotation={[1.5, 0, 0]}
           restitution={0.2}
           friction={0}
           onCollisionEnter={onHit}
         >
           <Star scale={0.012} />
+          {/*<Star scale={0.08} />*/}
         </RigidBody>
       </Float>
     </group>

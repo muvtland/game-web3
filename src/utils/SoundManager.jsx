@@ -21,6 +21,8 @@ function SoundManager() {
   }, []);
 
   useEffect(() => {
+    // console.log(audio, "audio")
+    // console.log(gamePhase, "gamePhase")
     if (gamePhase === "ready") {
       backgroundSound.volume = 0.1;
     }

@@ -1,0 +1,7 @@
+.image-sequence {
+    width: 400px;
+    height: 400px;
+    background-size: cover;
+    background-color: transparent;
+    /*background-image: url("/home/eduard/Documents/web3-job/main-game/beachy-beachy-ball/src/ImageSequence/assets/homer-1.jpg");*/
+}

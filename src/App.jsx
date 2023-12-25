@@ -10,6 +10,7 @@ import Game from "./Game.jsx";
 import Interface from "./interface/Interface";
 import Controls from "./utils/Controls";
 import MainMenu from "./interface/MainMenu.jsx";
+import Connect from "./Connect/Connect.jsx";
 
 // Prevent right click
 document.addEventListener("contextmenu", (e) => e.preventDefault());
@@ -41,7 +42,7 @@ export default function App() {
           <Interface />
         </Controls>
       ) : (
-        <MainMenu />
+        <Connect />
       )}
     </>
   );

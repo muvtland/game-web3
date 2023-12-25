@@ -4,16 +4,19 @@
 // https://www.gnu.org/licenses/gpl-3.0.html
 
 import { useKeyboardControls } from "@react-three/drei";
-import { useEffect, useRef, useState } from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import { addEffect } from "@react-three/fiber";
 import useGame from "../stores/useGame.js";
 import useAudio from "../stores/useAudio.js";
 import Logo from "../assets/logo_white.svg";
+import useUser from "../stores/useUser.js";
+import {levelsObj} from "../stores/levels.js";
 
 export default function Interface() {
   const time = useRef();
-  const { mode, setMode, restart, phase, setIsInGame } = useGame();
+  const { mode, setMode, restart, phase, setIsInGame, setDifficulty, setBlocksCount, next } = useGame();
   const { audio, toggleAudio } = useAudio();
+  const { updateLevel, level } = useUser();
   // const forward = useKeyboardControls((state) => state.forward);
   // const backward = useKeyboardControls((state) => state.backward);
   // const leftward = useKeyboardControls((state) => state.leftward);
@@ -74,6 +77,16 @@ export default function Interface() {
     setSelectedMode(mode);
   }
 
+  const handleNextLevelClick =  useCallback(()=> {
+    const currentLevel = levelsObj[level];
+    const nextLevel = levelsObj[currentLevel.nextLevel];
+    const difficulty = nextLevel?.difficulty || 1;
+    const blocksCount = nextLevel?.blocksCount || 5;
+    next(difficulty, blocksCount);
+    updateLevel();
+  }, [level])
+
+
   useEffect(() => {
     const unsubscribeEffect = addEffect(() => {
       const state = useGame.getState();
@@ -128,23 +141,35 @@ export default function Interface() {
       <img className="logo" src={Logo} alt="Beachy Beachy Ball Logo" />
       {/* Restart */}
       {phase === "ended" && (
-        <div className="restart">
-          <div className="finished">Finished!</div>
-          <img
-            src="./icons/replay.png"
-            className="restart-button"
-            onClick={restart}
-          />
-          <div>Play Again</div>
-        </div>
+          <div className="restart">
+            <div className="finished">Finished!</div>
+            <div className="restart-content">
+              <div className="restart-button-block">
+                <img
+                    src="./icons/replay.png"
+                    className="restart-button"
+                    onClick={restart}
+                />
+                <div>Play Again</div>
+              </div>
+              <div className="restart-button-block">
+                <img
+                    src="./icons/replay.png"
+                    className="restart-button"
+                    onClick={handleNextLevelClick}
+                />
+                <div>Next Level</div>
+              </div>
+            </div>
+          </div>
       )}
       {/* Control Buttons (top-right) */}
       <div className="control-buttons">
         <div className="control-button" id="sound" onClick={toggleAudio}>
           {audio ? (
-            <img src="./icons/sound_on.svg" />
+              <img src="./icons/sound_on.svg"/>
           ) : (
-            <img src="./icons/sound_off.svg" />
+              <img src="./icons/sound_off.svg"/>
           )}
         </div>
         <div
@@ -160,8 +185,8 @@ export default function Interface() {
         {/* Controls */}
         <div className="controls">
           {/* Mode */}
-          <div className="bottom-label">Mode</div>
-          <div className="mode">{mode}</div>
+          <div className="bottom-label">{level.split('-')[1]}</div>
+          <div className="mode">Level</div>
           {/* <div className="raw">
             <div className={`key ${forward ? "active" : ""}`}></div>
           </div>
@@ -192,14 +217,14 @@ export default function Interface() {
             <div className="modal-main">
               <div className="section-title">Mode</div>
               <div className="mode-area">{modeOptions}</div>
-              <div
-                className="modal-button disabled"
-                onClick={() => {
-                  console.log("High Scores");
-                }}
-              >
-                High Scores
-              </div>
+              {/*<div*/}
+              {/*  className="modal-button disabled"*/}
+              {/*  onClick={() => {*/}
+              {/*    console.log("High Scores");*/}
+              {/*  }}*/}
+              {/*>*/}
+              {/*  High Scores*/}
+              {/*</div>*/}
               <div
                 className="modal-button"
                 onClick={() => {
@@ -208,22 +233,22 @@ export default function Interface() {
               >
                 Clear Data
               </div>
-              <div
-                className="modal-button disabled"
-                onClick={() => {
-                  console.log("Help");
-                }}
-              >
-                Help
-              </div>
-              <div
-                className="modal-button disabled"
-                onClick={() => {
-                  console.log("Credits");
-                }}
-              >
-                Credits
-              </div>
+              {/*<div*/}
+              {/*  className="modal-button disabled"*/}
+              {/*  onClick={() => {*/}
+              {/*    console.log("Help");*/}
+              {/*  }}*/}
+              {/*>*/}
+              {/*  Help*/}
+              {/*</div>*/}
+              {/*<div*/}
+              {/*  className="modal-button disabled"*/}
+              {/*  onClick={() => {*/}
+              {/*    console.log("Credits");*/}
+              {/*  }}*/}
+              {/*>*/}
+              {/*  Credits*/}
+              {/*</div>*/}
               <div
                 className="modal-button"
                 onClick={() => {
@@ -241,18 +266,18 @@ export default function Interface() {
                 Back
               </div>
             </div>
-            <div className="modal-about-area">
-              <div className="modal-about">
-                <a href="https://github.com/michaelkolesidis/beachy-beachy-ball">
-                  © 2023 Michael Kolesidis.
-                </a>
-              </div>
-              <div className="modal-about">
-                <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">
-                  Licensed under the GNU AGPL 3.0
-                </a>
-              </div>
-            </div>
+            {/*<div className="modal-about-area">*/}
+            {/*  <div className="modal-about">*/}
+            {/*    <a href="https://github.com/michaelkolesidis/beachy-beachy-ball">*/}
+            {/*      © 2023 Michael Kolesidis.*/}
+            {/*    </a>*/}
+            {/*  </div>*/}
+            {/*  <div className="modal-about">*/}
+            {/*    <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">*/}
+            {/*      Licensed under the GNU AGPL 3.0*/}
+            {/*    </a>*/}
+            {/*  </div>*/}
+            {/*</div>*/}
           </div>
         </div>
       )}

@@ -13,7 +13,7 @@ import useGame from "./stores/useGame.js";
 export default function Ball() {
   const ballTexture = useLoader(
     THREE.TextureLoader,
-    "./textures/beach_ball_texture.png"
+    "./textures/ball-our.jpg"
   );
 
   const body = useRef();
@@ -73,6 +73,7 @@ export default function Ball() {
     );
 
     const unsubscribeAny = subscribeKeys(() => {
+      // console.log("start")
       start();
     });
 
@@ -115,8 +116,8 @@ export default function Ball() {
       torque.z += torqueStrength;
     }
 
-    body.current.applyImpulse(impulse);
-    body.current.applyTorqueImpulse(torque);
+    body.current.applyImpulse(impulse, true);
+    body.current.applyTorqueImpulse(torque, true);
 
     /**
      * Camera
@@ -153,6 +154,15 @@ export default function Ball() {
   //   hitSound.play()
   // }
 
+  // useEffect(() => {
+  //   return subscribeKeys(
+  //       (state) => state,
+  //       (pressed) => {
+  //         console.log('forward', pressed)
+  //       }
+  //   )
+  // }, [])
+
   return (
     <RigidBody
       name="ball"
@@ -166,8 +176,9 @@ export default function Ball() {
       // onCollisionEnter={onHit}
     >
       <mesh castShadow receiveShadow>
-        <sphereGeometry args={[0.3, 128, 128]} />
-        <meshStandardMaterial map={ballTexture} flatShading />
+        {/*<boxGeometry args={[1, 1, 1]}/>*/}
+        <sphereGeometry args={[0.3, 128, 128]}/>
+        <meshStandardMaterial map={ballTexture} flatShading/>
       </mesh>
     </RigidBody>
   );

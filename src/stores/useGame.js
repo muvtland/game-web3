@@ -128,6 +128,15 @@ export default create(
         });
       },
 
+      next: (difficulty, blocksCount) => {
+        set((state) => {
+          if (state.phase === "ended") {
+            return { phase: "ready", blocksSeed: Math.random(), difficulty, blocksCount };
+          }
+          return {};
+        });
+      },
+
       end: () => {
         set((state) => {
           if (state.phase === "playing") {
