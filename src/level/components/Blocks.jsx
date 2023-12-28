@@ -1,8 +1,3 @@
-// Beachy Beachy Ball
-// Copyright (c) 2023 Michael Kolesidis <michael.kolesidis@gmail.com>
-// Licensed under the GNU Affero General Public License v3.0.
-// https://www.gnu.org/licenses/gpl-3.0.html
-
 import { useState, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
@@ -10,11 +5,14 @@ import { RigidBody } from "@react-three/rapier";
 import * as THREE from "three";
 import useGame from "../../stores/useGame.js";
 import Star from "./Star.jsx";
+import { programColors } from "../../config/colors.js";
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 
-const beachMaterial = new THREE.MeshStandardMaterial({ color: "orange" });
-const obstacleMaterial = new THREE.MeshStandardMaterial({ color: "tomato" });
+// const beachMaterial = new THREE.MeshStandardMaterial({ color: "orange" });
+const beachMaterial = new THREE.MeshStandardMaterial({ color: programColors.trackFloor });
+// const obstacleMaterial = new THREE.MeshStandardMaterial({ color: "tomato" });
+const obstacleMaterial = new THREE.MeshStandardMaterial({ color: programColors.block });
 
 export const blockDimensions = {
   width: 4.2,

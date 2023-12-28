@@ -10,6 +10,8 @@
   --white: rgb(255, 255, 255);
   --black: rgb(30, 30, 30);
   --blue: #00bfff;
+  --background: linear-gradient(to bottom,  #FFEFE3 0%, #FDCAC9 100%);
+
 }
 
 * {
@@ -39,7 +41,7 @@ body,
   height: 100%;
   background: var(--white);
   color: var(--white);
-  background: var(--blue);
+  background: var(--background);
   overflow: hidden;
 }
 
@@ -56,12 +58,13 @@ body,
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  background: var(--blue);
+  background: var(--background);
   /*background: white;*/
 }
 
 .logo-ball {
-  width: 15vh;
+  /*width: 15vh;*/
+  width: 25vh;
   margin: 5vh 0 0.5vh 0;
   animation: spin 3s cubic-bezier(0.19, 1.51, 0.29, 0.99) infinite;
 }
@@ -136,6 +139,12 @@ body,
   border: 5px dashed white;
 }
 
+.main-menu-text{
+  font-family: "Nickname", sans-serif;
+  margin-top: 25px;
+  font-size: 50px;
+}
+
 .coming-soon {
   font-size: 2.5vh;
   margin-top: 1.5vh;
@@ -190,7 +199,7 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #00bfff;
+  background: var(--background);
 }
 
 .loading-text {
@@ -224,7 +233,8 @@ body,
 }
 
 .logo {
-  width: clamp(85px, 6vw, 120px);
+  /*width: clamp(85px, 6vw, 120px);*/
+  width: clamp(350px, 50vw, 120px);
   padding: clamp(1.5em, 1vw, 3em);
   transform: rotateZ(-10deg);
   pointer-events: none;
@@ -295,7 +305,7 @@ body,
 
 .bottom-label {
   /*font-size: clamp(1.5em, 1.75vw, 5em);*/
-  font-size: 50px;
+  font-size: 130px;
   letter-spacing: 3px;
   /* height: 3vw; */
   width: 100%;
@@ -304,7 +314,8 @@ body,
 
 .time {
   color: #ffffff;
-  font-size: clamp(4em, 5vw, 20em);
+  /*font-size: clamp(4em, 5vw, 20em);*/
+  font-size: 110px;
   letter-spacing: 3px;
   width: 100%;
   line-height: clamp(0.85em, 5vh, 5em);
@@ -316,7 +327,7 @@ body,
 /************/
 .mode {
   color: #ffffff;
-  font-size: clamp(2em, 3vw, 10em);
+  font-size: 130px;
   line-height: clamp(0.5em, 3vh, 2.5em);
   width: 100%;
 }

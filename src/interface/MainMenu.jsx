@@ -1,11 +1,7 @@
-// Beachy Beachy Ball
-// Copyright (c) 2023 Michael Kolesidis <michael.kolesidis@gmail.com>
-// Licensed under the GNU Affero General Public License v3.0.
-// https://www.gnu.org/licenses/gpl-3.0.html
-
 import {useEffect, useState} from "react";
 import useGame from "../stores/useGame.js";
-import LogoBall from "../assets/logo_ball_stroke.svg";
+// import LogoBall from "../assets/logo_ball_stroke.svg";
+import LogoBall from "../assets/logo-3.jpg";
 import Wordmark from "../assets/wordmark.svg";
 import Frog from "../assets/frog.png";
 import MichaelLogo from "../assets/mm_white.svg";
@@ -35,7 +31,9 @@ export default function MainMenu() {
   return (
     <div className="main-menu">
       <img className="logo-ball" src={LogoBall} />
-      <img className="wordmark" src={Wordmark} />
+      <h2 className="main-menu-text">Cerb Coin</h2>
+      <h2 className="main-menu-text">Game</h2>
+      {/*<img className="wordmark" src={Wordmark} />*/}
       {/*<ImageSequence />*/}
       <div className="main-menu-button" onClick={() => setIsInGame(true)}>
         Play

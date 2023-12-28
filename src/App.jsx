@@ -1,16 +1,11 @@
-// Beachy Beachy Ball
-// Copyright (c) 2023 Michael Kolesidis <michael.kolesidis@gmail.com>
-// Licensed under the GNU Affero General Public License v3.0.
-// https://www.gnu.org/licenses/gpl-3.0.html
-
 import { Canvas } from "@react-three/fiber";
 // import { EffectComposer, Pixelation } from "@react-three/postprocessing";
 import useGame from "./stores/useGame.js";
 import Game from "./Game.jsx";
 import Interface from "./interface/Interface";
 import Controls from "./utils/Controls";
-import MainMenu from "./interface/MainMenu.jsx";
-import Connect from "./Connect/Connect.jsx";
+// import MainMenu from "./interface/MainMenu.jsx";
+import Connect from "./connect/Connect.jsx";
 
 // Prevent right click
 document.addEventListener("contextmenu", (e) => e.preventDefault());

@@ -1,14 +1,10 @@
-// Beachy Beachy Ball
-// Copyright (c) 2023 Michael Kolesidis <michael.kolesidis@gmail.com>
-// Licensed under the GNU Affero General Public License v3.0.
-// https://www.gnu.org/licenses/gpl-3.0.html
-
 import { useKeyboardControls } from "@react-three/drei";
 import {useCallback, useEffect, useRef, useState} from "react";
 import { addEffect } from "@react-three/fiber";
 import useGame from "../stores/useGame.js";
 import useAudio from "../stores/useAudio.js";
-import Logo from "../assets/logo_white.svg";
+// import Logo from "../assets/logo_white.svg";
+import Logo from "../assets/logo-3.jpg";
 import useUser from "../stores/useUser.js";
 import {levelsObj} from "../stores/levels.js";
 
@@ -138,7 +134,7 @@ export default function Interface() {
   return (
     <div className="interface">
       {/* Logo */}
-      <img className="logo" src={Logo} alt="Beachy Beachy Ball Logo" />
+      <img className="logo" src={Logo} alt="Cerb Coin Logo" />
       {/* Restart */}
       {phase === "ended" && (
           <div className="restart">
@@ -172,13 +168,7 @@ export default function Interface() {
               <img src="./icons/sound_off.svg"/>
           )}
         </div>
-        <div
-          className="control-button"
-          id="menu"
-          onClick={() => setIsModalOpen(!isModalOpen)}
-        >
-          <img src="./icons/menu.svg" />
-        </div>
+        {/*a*/}
       </div>
       {/* Bottom */}
       <div className="bottom">

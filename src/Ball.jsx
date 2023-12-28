@@ -1,8 +1,3 @@
-// Beachy Beachy Ball
-// Copyright (c) 2023 Michael Kolesidis <michael.kolesidis@gmail.com>
-// Licensed under the GNU Affero General Public License v3.0.
-// https://www.gnu.org/licenses/gpl-3.0.html
-
 import { useRapier, RigidBody } from "@react-three/rapier";
 import { useFrame, useLoader } from "@react-three/fiber";
 import { useKeyboardControls } from "@react-three/drei";
@@ -13,7 +8,7 @@ import useGame from "./stores/useGame.js";
 export default function Ball() {
   const ballTexture = useLoader(
     THREE.TextureLoader,
-    "./textures/ball-our.jpg"
+    "./textures/ball-2.jpg"
   );
 
   const body = useRef();

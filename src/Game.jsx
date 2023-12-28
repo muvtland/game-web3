@@ -1,8 +1,3 @@
-// Beachy Beachy Ball
-// Copyright (c) 2023 Michael Kolesidis <michael.kolesidis@gmail.com>
-// Licensed under the GNU Affero General Public License v3.0.
-// https://www.gnu.org/licenses/gpl-3.0.html
-
 import {} from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
 import { Perf } from "r3f-perf";
@@ -52,7 +47,7 @@ export default function Experience() {
 
   return (
     <>
-      <color args={["#00bfff"]} attach="background" />
+      {/*<color stops={[0, 1]} args={['#FDCAC9']} attach="background" />*/}
       {performance && <Perf position="bottom-left" />}
       <Physics debug={false}>
         <Lights />

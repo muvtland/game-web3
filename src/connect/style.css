@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: var(--blue);
+    background: var(--background);
     /*background: white;*/
 }
 
