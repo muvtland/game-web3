@@ -1,10 +1,8 @@
 import {useEffect} from "react";
 import MainMenu from "../interface/MainMenu.jsx";
-import './style.css'
 import useUser from "../stores/useUser.js";
 import Loading from "../interface/Loading.jsx";
-import Connecting from "../interface/Connecting.jsx";
-import {Web3} from "web3";
+import Logo from "../assets/cerb-logo.png";
 
 export default function Connect() {
     const {
@@ -42,13 +40,14 @@ export default function Connect() {
             console.log(error);
         }
     };
-    console.log(isLoading, "isLoading")
-    if (isConnecting) {
-        return <Connecting/>
+
+
+    if (isConnecting){
+        return <Loading type={'connection'}/>
     }
 
     if (isLoading) {
-        return <Loading/>
+        return <Loading type={'loading'}/>
     }
 
     if (isLogin) {
@@ -57,8 +56,9 @@ export default function Connect() {
 
     return (
         <div className="connect">
+            <img className="connect-logo" src={Logo} alt="Cerb Coin Logo"/>
             <div className="connect-button" onClick={() => connectWallet()}>
-                Login with wallet
+                Login wallet
             </div>
         </div>
     );

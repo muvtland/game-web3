@@ -7,7 +7,7 @@ import App from "./App";
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
 root.render(
-  <Suspense fallback={<Loading />}>
+  <Suspense fallback={<Loading type={'loading'} />}>
     <App />
   </Suspense>
 );

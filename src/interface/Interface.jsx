@@ -3,8 +3,7 @@ import {useCallback, useEffect, useRef, useState} from "react";
 import { addEffect } from "@react-three/fiber";
 import useGame from "../stores/useGame.js";
 import useAudio from "../stores/useAudio.js";
-// import Logo from "../assets/logo_white.svg";
-import Logo from "../assets/logo-3.jpg";
+import Logo from "../assets/cerb-logo.png";
 import useUser from "../stores/useUser.js";
 import {levelsObj} from "../stores/levels.js";
 
@@ -13,11 +12,6 @@ export default function Interface() {
   const { mode, setMode, restart, phase, setIsInGame, setDifficulty, setBlocksCount, next } = useGame();
   const { audio, toggleAudio } = useAudio();
   const { updateLevel, level } = useUser();
-  // const forward = useKeyboardControls((state) => state.forward);
-  // const backward = useKeyboardControls((state) => state.backward);
-  // const leftward = useKeyboardControls((state) => state.leftward);
-  // const rightward = useKeyboardControls((state) => state.rightward);
-  // const jump = useKeyboardControls((state) => state.jump);
 
   /**
    * Mode
@@ -161,12 +155,18 @@ export default function Interface() {
       )}
       {/* Control Buttons (top-right) */}
       <div className="control-buttons">
-        <div className="control-button" id="sound" onClick={toggleAudio}>
-          {audio ? (
-              <img src="./icons/sound_on.svg"/>
-          ) : (
-              <img src="./icons/sound_off.svg"/>
-          )}
+        <div className="top-control-wrapper">
+          <div className="control-button" id="sound" onClick={() => setIsModalOpen(true)}>
+            <img src="./icons/closed.svg"/>
+          </div>
+          <div className="control-button" id="sound" onClick={toggleAudio}>
+            {audio ? (
+                // <img src="./icons/sound_on.svg"/>
+                <img src="./icons/sound.svg"/>
+            ) : (
+                <img src="./icons/sound_off.svg"/>
+            )}
+          </div>
         </div>
         {/*a*/}
       </div>
@@ -175,8 +175,10 @@ export default function Interface() {
         {/* Controls */}
         <div className="controls">
           {/* Mode */}
-          <div className="bottom-label">{level.split('-')[1]}</div>
-          <div className="mode">Level</div>
+          <div className="level-container">
+            <div className="mode">Level</div>
+            <div className="bottom-label">{level.split('-')[1]}</div>
+          </div>
           {/* <div className="raw">
             <div className={`key ${forward ? "active" : ""}`}></div>
           </div>
@@ -205,8 +207,8 @@ export default function Interface() {
             <div className="modal-title">Menu</div>
 
             <div className="modal-main">
-              <div className="section-title">Mode</div>
-              <div className="mode-area">{modeOptions}</div>
+              {/*<div className="section-title">Mode</div>*/}
+              {/*<div className="mode-area">{modeOptions}</div>*/}
               {/*<div*/}
               {/*  className="modal-button disabled"*/}
               {/*  onClick={() => {*/}
@@ -215,14 +217,14 @@ export default function Interface() {
               {/*>*/}
               {/*  High Scores*/}
               {/*</div>*/}
-              <div
-                className="modal-button"
-                onClick={() => {
-                  clearData();
-                }}
-              >
-                Clear Data
-              </div>
+              {/*<div*/}
+              {/*  className="modal-button"*/}
+              {/*  onClick={() => {*/}
+              {/*    clearData();*/}
+              {/*  }}*/}
+              {/*>*/}
+              {/*  Clear Data*/}
+              {/*</div>*/}
               {/*<div*/}
               {/*  className="modal-button disabled"*/}
               {/*  onClick={() => {*/}

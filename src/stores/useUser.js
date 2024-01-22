@@ -4,7 +4,7 @@ import injectedModule from "@web3-onboard/injected-wallets";
 import Onboard from "@web3-onboard/core";
 import { Web3 } from "web3";
 import { getLocalStorage, setLocalStorage, removeLocalStorage, myFetch } from "./utils";
-import {levelsObj} from "./levels.js";
+import { levelsObj } from "./levels.js";
 
 const infuraKey = 'a2678da8c71f4758bed859f82152f92c'
 const MAINNET_RPC_URL = `https://mainnet.infura.io/v3/${infuraKey}`
@@ -27,7 +27,7 @@ const onboard = Onboard({
 const useUser = create(
     subscribeWithSelector((set, get) => ({
         isLogin: false,
-        isLoading: true,
+        isLoading: false,
         walletAddress: null,
         level: null,
         isConnecting: false,
@@ -58,13 +58,12 @@ const useUser = create(
                         return { walletAddress, isLogin, level, isLoading: false };
                     });
                 }{
-                    console.log('yes')
                     set(() => {
                         return { isLoading: false };
                     });
                 }
             } catch (e) {
-                console.log(e);
+                removeLocalStorage('access_token');
                 return { walletAddress: "" };
             }
         },
@@ -95,7 +94,8 @@ const useUser = create(
                     }
                 }
             } catch (e) {
-                console.log(e);
+                removeLocalStorage('access_token');
+                set(() => ({ isConnecting: false, isLoading: false }))
             }
         },
         updateLevel: async () => {
