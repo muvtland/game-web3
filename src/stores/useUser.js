@@ -22,6 +22,18 @@ const onboard = Onboard({
             rpcUrl: MAINNET_RPC_URL
         },
     ],
+    accountCenter: {
+        desktop: {
+            position: 'topLeft',
+            enabled: false,
+            // minimal: true
+        },
+        mobile: {
+            position: 'topLeft',
+            enabled: false,
+            // minimal: true
+        }
+    },
 });
 
 const useUser = create(

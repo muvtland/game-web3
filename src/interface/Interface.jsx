@@ -1,15 +1,20 @@
 import { useKeyboardControls } from "@react-three/drei";
-import {useCallback, useEffect, useRef, useState} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { addEffect } from "@react-three/fiber";
 import useGame from "../stores/useGame.js";
 import useAudio from "../stores/useAudio.js";
 import Logo from "../assets/cerb-logo.png";
 import useUser from "../stores/useUser.js";
-import {levelsObj} from "../stores/levels.js";
+import { levelsObj } from "../stores/levels.js";
+import ImageSequence from "../ImageSequence/index.jsx";
+import {useImagePreloader} from "../ImageSequence/hooks/useImagePreloader.js";
+import {images} from "../ImageSequence/import-all-images.js";
+import Loading from "./Loading.jsx";
 
 export default function Interface() {
   const time = useRef();
   const { mode, setMode, restart, phase, setIsInGame, setDifficulty, setBlocksCount, next } = useGame();
+
   const { audio, toggleAudio } = useAudio();
   const { updateLevel, level } = useUser();
 
@@ -126,7 +131,9 @@ export default function Interface() {
   ));
 
   return (
-    <div className="interface">
+    <div className={`interface`}>
+      <ImageSequence />
+
       {/* Logo */}
       <img className="logo" src={Logo} alt="Cerb Coin Logo" />
       {/* Restart */}
@@ -136,7 +143,7 @@ export default function Interface() {
             <div className="restart-content">
               <div className="restart-button-block">
                 <img
-                    src="./icons/replay.png"
+                    src="./icons/return.png"
                     className="restart-button"
                     onClick={restart}
                 />
@@ -144,8 +151,8 @@ export default function Interface() {
               </div>
               <div className="restart-button-block">
                 <img
-                    src="./icons/replay.png"
-                    className="restart-button"
+                    src="./icons/next.png"
+                    className="next-button"
                     onClick={handleNextLevelClick}
                 />
                 <div>Next Level</div>
@@ -157,14 +164,13 @@ export default function Interface() {
       <div className="control-buttons">
         <div className="top-control-wrapper">
           <div className="control-button" id="sound" onClick={() => setIsModalOpen(true)}>
-            <img src="./icons/closed.svg"/>
+            <img src="./icons/close.svg"/>
           </div>
           <div className="control-button" id="sound" onClick={toggleAudio}>
             {audio ? (
-                // <img src="./icons/sound_on.svg"/>
                 <img src="./icons/sound.svg"/>
             ) : (
-                <img src="./icons/sound_off.svg"/>
+                <img src="./icons/no-sound.svg"/>
             )}
           </div>
         </div>
@@ -177,26 +183,15 @@ export default function Interface() {
           {/* Mode */}
           <div className="level-container">
             <div className="mode">Level</div>
-            <div className="bottom-label">{level.split('-')[1]}</div>
+            {/*<div className="bottom-label">{level.split('-')[1]}</div>*/}
+            <div className="bottom-label">{1}</div>
           </div>
-          {/* <div className="raw">
-            <div className={`key ${forward ? "active" : ""}`}></div>
-          </div>
-          <div className="raw">
-            <div className={`key ${leftward ? "active" : ""}`}></div>
-            <div className={`key ${backward ? "active" : ""}`}></div>
-            <div className={`key ${rightward ? "active" : ""}`}></div>
-          </div>
-          <div className="raw">
-            <div className={`key large ${jump ? "active" : ""}`}></div>
-          </div> */}
         </div>
         {/* Time */}
         <div className="bottom-right">
           <div className="time-container">
             <div className="bottom-label">Time</div>
             <div className="time" ref={time}></div>
-            {/* <div className="mode">{mode}</div> */}
           </div>
         </div>
       </div>
@@ -207,40 +202,6 @@ export default function Interface() {
             <div className="modal-title">Menu</div>
 
             <div className="modal-main">
-              {/*<div className="section-title">Mode</div>*/}
-              {/*<div className="mode-area">{modeOptions}</div>*/}
-              {/*<div*/}
-              {/*  className="modal-button disabled"*/}
-              {/*  onClick={() => {*/}
-              {/*    console.log("High Scores");*/}
-              {/*  }}*/}
-              {/*>*/}
-              {/*  High Scores*/}
-              {/*</div>*/}
-              {/*<div*/}
-              {/*  className="modal-button"*/}
-              {/*  onClick={() => {*/}
-              {/*    clearData();*/}
-              {/*  }}*/}
-              {/*>*/}
-              {/*  Clear Data*/}
-              {/*</div>*/}
-              {/*<div*/}
-              {/*  className="modal-button disabled"*/}
-              {/*  onClick={() => {*/}
-              {/*    console.log("Help");*/}
-              {/*  }}*/}
-              {/*>*/}
-              {/*  Help*/}
-              {/*</div>*/}
-              {/*<div*/}
-              {/*  className="modal-button disabled"*/}
-              {/*  onClick={() => {*/}
-              {/*    console.log("Credits");*/}
-              {/*  }}*/}
-              {/*>*/}
-              {/*  Credits*/}
-              {/*</div>*/}
               <div
                 className="modal-button"
                 onClick={() => {
@@ -258,18 +219,6 @@ export default function Interface() {
                 Back
               </div>
             </div>
-            {/*<div className="modal-about-area">*/}
-            {/*  <div className="modal-about">*/}
-            {/*    <a href="https://github.com/michaelkolesidis/beachy-beachy-ball">*/}
-            {/*      © 2023 Michael Kolesidis.*/}
-            {/*    </a>*/}
-            {/*  </div>*/}
-            {/*  <div className="modal-about">*/}
-            {/*    <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">*/}
-            {/*      Licensed under the GNU AGPL 3.0*/}
-            {/*    </a>*/}
-            {/*  </div>*/}
-            {/*</div>*/}
           </div>
         </div>
       )}

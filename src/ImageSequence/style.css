@@ -1,7 +1,26 @@
 .image-sequence {
-    width: 400px;
-    height: 400px;
+    display: flex;
+    min-width: 400px;
+    min-height: 400px;
     background-size: cover;
     background-color: transparent;
-    /*background-image: url("/home/eduard/Documents/web3-job/main-game/beachy-beachy-ball/src/ImageSequence/assets/homer-1.jpg");*/
+    z-index: 8;
+    left: 20px;
+    bottom: 0;
+    position: absolute;
+    animation: slideDown 3.5s linear forwards;
+}
+
+.image-sequence-img{
+    min-width: 400px;
+    min-height: 400px;
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(0) scale(1.2); /* Начальное положение над экраном */
+    }
+    100% {
+        transform: translateY(+100%) translateX(-30%) scale(1); /* Заключительное положение внизу экрана */
+    }
 }

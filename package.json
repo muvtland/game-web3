@@ -23,10 +23,13 @@
     "@web3-onboard/react": "^2.8.13",
     "@web3-onboard/walletconnect": "^2.5.2",
     "@web3-onboard/walletlink": "^2.1.7",
+    "dotenv": "^16.4.1",
     "ethers": "^6.9.1",
     "r3f-perf": "^7.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-sequence-animator": "^2.3.0",
+    "sass": "^1.70.0",
     "three": "^0.153.0",
     "web3": "^4.3.0",
     "zustand": "^4.3.8"

@@ -1,10 +1,9 @@
 import {useEffect} from "react";
 import useGame from "../stores/useGame.js";
 import Logo from "../assets/cerb-logo.png";
-import Podium from "../assets/podium.png";
-import Ball from "../assets/ball.png";
 import useUser from "../stores/useUser.js";
 import {levelsObj} from "../stores/levels.js";
+import Loading from "./Loading.jsx";
 
 export default function MainMenu() {
   const { setBlocksCount, setDifficulty, setIsInGame } = useGame();
@@ -26,12 +25,13 @@ export default function MainMenu() {
 
   return (
     <div className="main-menu">
+      {/*<ImageSequence />*/}
       <img className="logo-main-menu" src={Logo} alt="cerb-coin" />
       <p className="main-menu-button" onClick={() => setIsInGame(true)}>
         Play
       </p>
-        <img className="podium-ball" src={Ball} alt="ball" />
-        <img className="podium" src={Podium} alt="podium" />
+        {/*<img className="podium-ball" src={Ball} alt="ball" />*/}
+        {/*<img className="podium" src={Podium} alt="podium" />*/}
     </div>
   );
 }

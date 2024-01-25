@@ -1,28 +1,25 @@
-import React, { useRef, useEffect } from 'react';
-import './style.css'; // Создайте файл ImageSequence.css для стилей
-const ImageSequence = ({ basePath = '/ImageSequence/assets/homer-', numFrames }) => {
-    const containerRef = useRef();
+import React from 'react';
+import { SequenceAnimator } from 'react-sequence-animator';
+import { images } from "./import-all-images.js";
+import './style.css';
+import { useImagePreloader } from "./hooks/useImagePreloader.js";
+import Loading from "../interface/Loading.jsx";
+import useWindowSize from "./hooks/useWindowSize.js";
+const ImageSequence = () => {
+    const { imagesPreloaded } = useImagePreloader(images);
+    const windowSize = useWindowSize();
+    if (!imagesPreloaded){
+        return <Loading type="loading" />
+    }
 
-    useEffect(() => {
-        const container = containerRef.current;
-        let currentFrame = 1;
-        // console.log(`url(${basePath}${currentFrame}.jpg)`)
-        // console.log(basePath)
-        const updateFrame = () => {
-            container.style.backgroundImage = `url(${basePath}${currentFrame}.png)`;
-            if (currentFrame === 10){
-                currentFrame =  1;
-            }else {
-                currentFrame =  currentFrame + 1;
-            }
-        };
+    return (
+        <div className="image-sequence">
+            <SequenceAnimator autoplay={true} loop={false} duration={4000}>
+                {images.map((item, index) => <img src={item} alt={`cerber-${index + 1}`} style={{width: windowSize.width > 1199 ? 600 : 400 }} />)}
+            </SequenceAnimator>
+        </div>
 
-        const intervalId = setInterval(updateFrame, 100); // Задайте интервал смены кадров
-
-        return () => clearInterval(intervalId); // Очистите интервал при размонтировании компонента
-    }, [basePath, numFrames]);
-
-    return <div ref={containerRef} className="image-sequence" style={{display: "flex" }}/>;
+    );
 };
 
 export default ImageSequence;

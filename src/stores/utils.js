@@ -1,9 +1,8 @@
 const getLocalStorage = (key) => JSON.parse(window.localStorage.getItem(key));
 const setLocalStorage = (key, value) =>
   window.localStorage.setItem(key, JSON.stringify(value));
-
 const removeLocalStorage = (key, value) => window.localStorage.removeItem(key);
-
+const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:3030'
 const myFetch = async (path, method = 'GET', token, body) => {
     try {
         const headers = {
@@ -14,7 +13,7 @@ const myFetch = async (path, method = 'GET', token, body) => {
         }
         const bodyData = body ? JSON.stringify(body) : null;
         // const response = await fetch(`${SERVER_URL}${path}`, {
-        const response = await fetch(`http://localhost:3030${path}`, {
+        const response = await fetch(`${SERVER_URL}${path}`, {
             method,
             headers,
             body: bodyData,

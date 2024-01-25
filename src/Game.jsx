@@ -1,4 +1,3 @@
-import {} from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
 import { Perf } from "r3f-perf";
 import Lights from "./Lights.jsx";
@@ -49,8 +48,8 @@ export default function Experience() {
     <>
       {/*<color stops={[0, 1]} args={['#FDCAC9']} attach="background" />*/}
       {performance && <Perf position="bottom-left" />}
-      <Physics debug={false}>
-        <Lights />
+      <Physics debug={false} interpolate={false}>
+        <Lights/>
 
         {mode === "random" ? (
           <RandomLevel
@@ -62,8 +61,7 @@ export default function Experience() {
         ) : (
           <TourLevel difficulty={difficulty} />
         )}
-
-        <Ball />
+        <Ball/>
         <SoundManager />
       </Physics>
     </>

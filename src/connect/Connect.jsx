@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import MainMenu from "../interface/MainMenu.jsx";
 import useUser from "../stores/useUser.js";
 import Loading from "../interface/Loading.jsx";
@@ -40,7 +40,8 @@ export default function Connect() {
             console.log(error);
         }
     };
-
+    return <MainMenu/>
+    // return <Loading type={'connection'}/>
 
     if (isConnecting){
         return <Loading type={'connection'}/>

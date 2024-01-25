@@ -128,8 +128,11 @@ export default function Ball() {
     cameraTarget.copy(bodyPosition);
     cameraTarget.y += 0.25;
 
-    smoothedCameraPosition.lerp(cameraPosition, 5 * delta);
-    smoothedCameraTarget.lerp(cameraTarget, 5 * delta);
+    // smoothedCameraPosition.lerp(cameraPosition, 5 * delta);
+    // smoothedCameraTarget.lerp(cameraTarget, 5 * delta);
+
+    smoothedCameraPosition.lerp(cameraPosition, 2 * delta);
+    smoothedCameraTarget.lerp(cameraTarget, 2 * delta);
 
     state.camera.position.copy(smoothedCameraPosition);
     state.camera.lookAt(smoothedCameraTarget);
@@ -171,7 +174,6 @@ export default function Ball() {
       // onCollisionEnter={onHit}
     >
       <mesh castShadow receiveShadow>
-        {/*<boxGeometry args={[1, 1, 1]}/>*/}
         <sphereGeometry args={[0.3, 128, 128]}/>
         <meshStandardMaterial map={ballTexture} flatShading/>
       </mesh>
