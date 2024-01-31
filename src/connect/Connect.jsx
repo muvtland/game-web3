@@ -40,8 +40,8 @@ export default function Connect() {
             console.log(error);
         }
     };
-    return <MainMenu/>
-    // return <Loading type={'connection'}/>
+
+    // return <MainMenu/>
 
     if (isConnecting){
         return <Loading type={'connection'}/>

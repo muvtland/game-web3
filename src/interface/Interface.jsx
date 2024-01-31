@@ -1,4 +1,3 @@
-import { useKeyboardControls } from "@react-three/drei";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { addEffect } from "@react-three/fiber";
 import useGame from "../stores/useGame.js";
@@ -7,9 +6,6 @@ import Logo from "../assets/cerb-logo.png";
 import useUser from "../stores/useUser.js";
 import { levelsObj } from "../stores/levels.js";
 import ImageSequence from "../ImageSequence/index.jsx";
-import {useImagePreloader} from "../ImageSequence/hooks/useImagePreloader.js";
-import {images} from "../ImageSequence/import-all-images.js";
-import Loading from "./Loading.jsx";
 
 export default function Interface() {
   const time = useRef();
@@ -139,23 +135,29 @@ export default function Interface() {
       {/* Restart */}
       {phase === "ended" && (
           <div className="restart">
-            <div className="finished">Finished!</div>
-            <div className="restart-content">
-              <div className="restart-button-block">
-                <img
-                    src="./icons/return.png"
-                    className="restart-button"
-                    onClick={restart}
-                />
-                <div>Play Again</div>
-              </div>
-              <div className="restart-button-block">
-                <img
-                    src="./icons/next.png"
-                    className="next-button"
-                    onClick={handleNextLevelClick}
-                />
-                <div>Next Level</div>
+            <div>
+              {/*<div className="finished">Finished!</div>*/}
+              <div className="restart-content">
+                <div className="finished">Finished!</div>
+                <div className="buttons-block">
+                  <div className="restart-button-block">
+                    <img
+                        src="./icons/return.png"
+                        className="restart-button"
+                        onClick={restart}
+                    />
+                    <div>Play Again</div>
+                  </div>
+                  <div className="restart-button-block">
+                    <img
+                        src="./icons/next.png"
+                        className="next-button"
+                        onClick={handleNextLevelClick}
+                    />
+                    <div>Next Level</div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -184,7 +186,7 @@ export default function Interface() {
           <div className="level-container">
             <div className="mode">Level</div>
             {/*<div className="bottom-label">{level.split('-')[1]}</div>*/}
-            <div className="bottom-label">{1}</div>
+            <div className="bottom-label">{level.split('-')[1]}</div>
           </div>
         </div>
         {/* Time */}
