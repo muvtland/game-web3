@@ -1,8 +1,17 @@
-import { useEffect } from "react";
+import {useEffect} from "react";
+import {browserName} from 'react-device-detect';
 import MainMenu from "../interface/MainMenu.jsx";
 import useUser from "../stores/useUser.js";
 import Loading from "../interface/Loading.jsx";
 import Logo from "../assets/cerb-logo.png";
+
+const browserLinksForAddPhantom = {
+    Firefox: <a href="https://addons.mozilla.org/ru/firefox/addon/phantom-app/" target="_blank">Add Phantom</a>,
+    Chrome: <a href="https://chromewebstore.google.com/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa" target="_blank">Add Phantom</a>,
+    Brave: <a href="https://chromewebstore.google.com/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa" target="_blank">Add Phantom</a>,
+    Default: <a href="https://chromewebstore.google.com/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa" target="_blank">Add Phantom</a>,
+}
+const isMetaMaskAvailable = typeof window['ethereum'] !== 'undefined';
 
 export default function Connect() {
     const {
@@ -42,8 +51,19 @@ export default function Connect() {
     };
 
     // return <MainMenu/>
+    console.log(isMetaMaskAvailable, "isMetaMaskAvailable")
+    if (!isMetaMaskAvailable) {
+        return (
+            <div className="connect">
+                <div className="connect-button">
+                    {browserLinksForAddPhantom[browserName]}
+                </div>
+            </div>
+        )
+    }
 
-    if (isConnecting){
+
+    if (isConnecting) {
         return <Loading type={'connection'}/>
     }
 

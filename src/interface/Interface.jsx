@@ -186,7 +186,7 @@ export default function Interface() {
           <div className="level-container">
             <div className="mode">Level</div>
             {/*<div className="bottom-label">{level.split('-')[1]}</div>*/}
-            <div className="bottom-label">{level.split('-')[1]}</div>
+            <div className="bottom-label">{level ? level.split('-')[1] : ''}</div>
           </div>
         </div>
         {/* Time */}

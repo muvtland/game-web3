@@ -72,8 +72,22 @@ body,
   cursor: pointer;
   transition: scale 0.2s ease-in-out;
   text-transform: uppercase;
+  /*background: var(--background);*/
 }
-
+.connect-button > a{
+  font-family: Coiny-Regular, sans-serif;
+  color: var(--text-color);
+  -webkit-text-stroke: 4px #FFFFFF;
+  /*text-stroke: 4px #FFFFFF;*/
+  /*font-weight: bolder;*/
+  font-size: 1em;
+  cursor: pointer;
+  transition: scale 0.2s ease-in-out;
+  text-transform: uppercase;
+}
+.wallet-adapter-button-start-icon{
+  display: none!important;
+}
 .connect-button:hover {
   scale: 1.1;
 }

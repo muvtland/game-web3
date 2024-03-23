@@ -4,7 +4,8 @@ import useGame from "./stores/useGame.js";
 import Game from "./Game.jsx";
 import Interface from "./interface/Interface";
 import Controls from "./utils/Controls";
-import Connect from "./connect/Connect.jsx";
+//import Connect from "./connect/Connect.jsx";
+import {ConnectSolana} from "./connect/ConnectSolana.jsx";
 
 document.addEventListener("contextmenu", (e) => e.preventDefault());
 
@@ -29,7 +30,7 @@ export default function App() {
           <Interface/>
         </Controls>
       ) : (
-          <Connect/>
+          <ConnectSolana/>
       )}
     </>
   );
